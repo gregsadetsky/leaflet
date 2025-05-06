@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "services": {
+    "worker": {
+      "port": 8080,
+      "image": "appview"
+    }
+  },
+  "images": {
+    "appview": {
+      "dockerfile": "appview/Dockerfile"
+    }
+  }
+}

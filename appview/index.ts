@@ -1,16 +1,16 @@
-import { createClient } from "@supabase/supabase-js";
-import { Database, Json } from "supabase/database.types";
 import { IdResolver } from "@atproto/identity";
-const idResolver = new IdResolver();
 import { Firehose, MemoryRunner } from "@atproto/sync";
-import { ids } from "lexicons/api/lexicons";
+import { AtUri } from "@atproto/syntax";
+import { createClient } from "@supabase/supabase-js";
+import { readFile, writeFile } from "fs/promises";
 import {
   PubLeafletDocument,
   PubLeafletPost,
   PubLeafletPublication,
 } from "lexicons/api";
-import { AtUri } from "@atproto/syntax";
-import { writeFile, readFile } from "fs/promises";
+import { ids } from "lexicons/api/lexicons";
+import { Database, Json } from "supabase/database.types";
+const idResolver = new IdResolver();
 
 const cursorFile = "./cursor";
 
