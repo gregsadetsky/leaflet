@@ -8,4 +8,4 @@ RUN npm ci
 
 # copy rest and build
 COPY . /code/.
-CMD ["npm", "run", "start-appview"]
+CMD ["npm", "run", "start-appview-prod"]
