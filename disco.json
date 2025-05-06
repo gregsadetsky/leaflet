@@ -2,8 +2,13 @@
   "version": "1.0",
   "services": {
     "worker": {
-      "port": 8080,
-      "image": "appview"
+      "image": "appview",
+      "volumes": [
+        {
+          "name": "cursor",
+          "destinationPath": "/cursor"
+        }
+      ]
     }
   },
   "images": {

@@ -12,7 +12,7 @@ import { ids } from "lexicons/api/lexicons";
 import { Database, Json } from "supabase/database.types";
 const idResolver = new IdResolver();
 
-const cursorFile = "./cursor";
+const cursorFile = "/cursor/cursor.bin";
 
 // let supabase = createClient<Database>(
 //   process.env.NEXT_PUBLIC_SUPABASE_API_URL as string,
