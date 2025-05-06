@@ -14,10 +14,10 @@ const idResolver = new IdResolver();
 
 const cursorFile = "./cursor";
 
-let supabase = createClient<Database>(
-  process.env.NEXT_PUBLIC_SUPABASE_API_URL as string,
-  process.env.SUPABASE_SERVICE_ROLE_KEY as string,
-);
+// let supabase = createClient<Database>(
+//   process.env.NEXT_PUBLIC_SUPABASE_API_URL as string,
+//   process.env.SUPABASE_SERVICE_ROLE_KEY as string,
+// );
 async function main() {
   let startCursor;
   try {
@@ -54,43 +54,48 @@ async function main() {
           if (!record.success) {
             return;
           }
-          await supabase.from("documents").upsert({
-            uri: evt.uri.toString(),
-            data: record.value as Json,
-          });
+          console.log("PRETENDING TO UPSERT");
+          // await supabase.from("documents").upsert({
+          //   uri: evt.uri.toString(),
+          //   data: record.value as Json,
+          // });
           let publicationURI = new AtUri(record.value.publication);
 
           if (publicationURI.host !== evt.uri.host) {
             console.log("Unauthorized to create post!");
             return;
           }
-          await supabase.from("documents_in_publications").insert({
-            publication: record.value.publication,
-            document: evt.uri.toString(),
-          });
+          console.log("PRETENDING TO INSERT");
+          // await supabase.from("documents_in_publications").insert({
+          //   publication: record.value.publication,
+          //   document: evt.uri.toString(),
+          // });
         }
         if (evt.event === "delete") {
-          await supabase
-            .from("documents")
-            .delete()
-            .eq("uri", evt.uri.toString());
+          console.log("PRETENDING TO DELETE");
+          // await supabase
+          //   .from("documents")
+          //   .delete()
+          //   .eq("uri", evt.uri.toString());
         }
       }
       if (evt.collection === ids.PubLeafletPublication) {
         if (evt.event === "create" || evt.event === "update") {
           let record = PubLeafletPublication.validateRecord(evt.record);
           if (!record.success) return;
-          await supabase.from("publications").upsert({
-            uri: evt.uri.toString(),
-            identity_did: evt.did,
-            name: record.value.name,
-          });
+          console.log("PRETENDING TO UPSERT");
+          // await supabase.from("publications").upsert({
+          //   uri: evt.uri.toString(),
+          //   identity_did: evt.did,
+          //   name: record.value.name,
+          // });
         }
         if (evt.event === "delete") {
-          await supabase
-            .from("publications")
-            .delete()
-            .eq("uri", evt.uri.toString());
+          console.log("PRETENDING TO DELETE");
+          // await supabase
+          //   .from("publications")
+          //   .delete()
+          //   .eq("uri", evt.uri.toString());
         }
       }
       if (evt.collection === ids.PubLeafletPost) {
